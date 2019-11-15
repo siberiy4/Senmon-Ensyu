@@ -1,0 +1,9 @@
+CREATE TABLE bbs.article (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY ,
+    title VARCHAR(30) NOT NULL ,
+    speaker_name VARCHAR(30) NOT NULL ,
+    mail VARCHAR(50) NOT NULL ,
+    content TEXT NOT NULL ,
+    post_time VARCHAR(30) NOT NULL,
+    created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
