@@ -22,12 +22,11 @@ DESCRIPTION
 
 int main(int argc, char const *argv[])
 {
-    int sockfd, len, s, n, i,pid;
+    int sockfd, len, s, n, i, pid;
     struct sockaddr_in sa, ca;
     char buf[512];
     char *c = buf;
     pid_t result;
-
 
     if (argc != 2)
     {
@@ -54,42 +53,45 @@ int main(int argc, char const *argv[])
     //listen() を実行するとTCPそけっとがlistenとなる
     listen(sockfd, 5);
 
-
     //accept()で接続の受け入れ。接続されるとacceptをぬける
     len = sizeof(ca);
 
-    while(1){ 
+    while (1)
+    {
 
         s = accept(sockfd, (struct sockaddr *)&ca, (socklen_t *)&len);
         printf("Connected\n");
         //sockfdはTCP接続を受け入れるソケット、sは接続されたソケットを表す
-        
-        //子プロセスを作成
-        pid= fork();
 
-        if(pid==0){ 
+        //子プロセスを作成
+        pid = fork();
+
+        if (pid == 0)
+        {
             //受け取った文字列を大文字から小文字に変換して返す
             for (;;)
             {
                 n = recv(s, buf, sizeof(buf), 0);
-                if(n==0){
+                if (n == 0)
+                {
                     break;
                 }
                 buf[n] = '\0';
-                fputs(buf,stdout);
+                fputs(buf, stdout);
                 fflush(stdout);
-                c=buf;
-                while(*c){
-                    *c=(char)tolower((int)*c);
+                c = buf;
+                while (*c)
+                {
+                    *c = (char)tolower((int)*c);
                     c++;
                 }
-                send(s,buf,n,0);
+                send(s, buf, n, 0);
             }
 
             close(s);
             printf("Closed\n");
-            }
         }
+    }
     close(sockfd);
 
     return EXIT_SUCCESS;

@@ -19,7 +19,6 @@ DESCRIPTION
     port:   UDPサーバのポート番号
 **/
 
-
 int main(int argc, char const *argv[])
 {
     int sockfd,n;
@@ -63,7 +62,6 @@ int main(int argc, char const *argv[])
         recvline[n]='\0';
         fputs(recvline,stdout);
         fflush(stdout);
-
     }
 
     return 0;
