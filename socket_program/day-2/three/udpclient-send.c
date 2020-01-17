@@ -29,11 +29,12 @@ int main(int argc, char const *argv[])
     //ソケットを一つ確保する
     sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 
-    //通信相手先の送信用情報を構造体SAに格納
+    //通信相手先の送信用情報を構造体saに格納
     bzero((char *)&sa, sizeof(sa));
     sa.sin_family = AF_INET;
     sa.sin_addr.s_addr = inet_addr("150.89.212.255");
     sa.sin_port = htons(7503);
+    
     //ブロードキャストを送信するオプションを使う
     setsockopt(sockfd, SOL_SOCKET, SO_BROADCAST, (char *)&yes, sizeof(yes));
 

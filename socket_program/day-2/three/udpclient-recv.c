@@ -29,7 +29,6 @@ int main(int argc, char const *argv[])
 
     
     //ソケットを一つ確保する
-
     sockfd=socket(AF_INET,SOCK_DGRAM,0);
 
     //受信用の情報を構造体ca に格納
